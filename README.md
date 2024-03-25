@@ -1,1 +1,1 @@
-## Hey! Welcome to my SQL portofilo where I add examples of the SQL code I've written on my SQL journey.
+## Hey! Welcome to my SQL repository where I add examples of the code I've written on my SQL journey.
