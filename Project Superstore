@@ -1,4 +1,4 @@
-#This project uses the following Superstore table data: 
+# This project uses the following Superstore table data: 
 
 CREATE TABLE superstore (
     item_id INTEGER PRIMARY KEY,
@@ -28,25 +28,30 @@ VALUES
     (15, 'Cozy Throw Blanket', 'Furnishings', 24.99, 100, 4.2);
 
 
-#Select all the items and their price
+# Select all the items and their price.
+
 select item_name, price
 from superstore
 order by price desc;
 
-#select the cheapest item
+# Select the cheapest item.
+
 select min(price)
 from superstore;
 
-#select the average price of items 
+# Select the average price of items. 
+
 select avg(price)
 from superstore;
 
-#select the average price of items in the kitchen supplies category
+# Select the average price of items in the kitchen supplies category.
+
 select avg(price), category
 from superstore
 where category = "Kitchen Supplies";
 
-#select the sum of the air purifiers that are in stock
+# Select the sum of the air purifiers that are in stock.
+
 select sum(stock_quantity), item_name
 from superstore
 where item_name = "Air Purifier";
