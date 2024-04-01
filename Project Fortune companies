@@ -67,15 +67,20 @@ order by avg_maternitiy_leave_in_weeks desc;
 
 # Assign to every company in the retail industry a value "above average", "average" or "below average" based on how many paid weeks off they offer.
 select company_name,
-CASE 
+case 
   WHEN paid_time_off_days >= 18 THEN 'above average'
   WHEN paid_time_off_days >= 14 THEN 'average'
   ELSE 'below average'
 end as work_life_balance
 from fortune_companies
 where industry='Retail'
-order by work_life_balance desc
-;
+order by work_life_balance desc;
+
+# Which companies have healthcare benefits and the average tenure of their employees is longer than 7 years?
+select company_name
+from fortune_companies
+where avg_employee_tenure>7
+and healthcare_benefits=1;
 
 # what is the average revenue of each industry on the list?
 select industry, round (avg(revenue),1) as average_revenue
