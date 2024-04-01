@@ -59,6 +59,7 @@ VALUES
     ('Company KK', 'Healthcare', 150.2, 3400, 0, 16, 8, 5.3);
 
 # Select the industries that offer at least 10 weeks of maternity leave on average and what those averages are.
+
 select industry, ROUND(AVG(maternity_leave_weeks),1) as avg_maternitiy_leave_in_weeks
 from fortune_companies
 group by industry
@@ -66,6 +67,7 @@ having maternity_leave_weeks>=10
 order by avg_maternitiy_leave_in_weeks desc;
 
 # Assign to every company in the retail industry a value "above average", "average" or "below average" based on how many paid weeks off they offer.
+
 select company_name,
 case 
   WHEN paid_time_off_days >= 18 THEN 'above average'
@@ -77,18 +79,21 @@ where industry='Retail'
 order by work_life_balance desc;
 
 # Which companies have healthcare benefits and the average tenure of their employees is longer than 7 years?
+
 select company_name
 from fortune_companies
 where avg_employee_tenure>7
 and healthcare_benefits=1;
 
 # what is the average revenue of each industry on the list?
+
 select industry, round (avg(revenue),1) as average_revenue
 from fortune_companies
 group by industry
 order by average_revenue desc;
 
 # How many companies from each industry are on the list?
+
 select count (industry), industry
 from fortune_companies
 group by industry;
