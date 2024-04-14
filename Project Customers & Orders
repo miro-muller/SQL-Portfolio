@@ -1,0 +1,61 @@
+# In this project I'm querying a datbase with multiple tables containing data about customers and their orders to answer the following questions:
+
+# How many customers ordered more than 2 products at a time in February, and what was the average amount spent for those customers?
+
+SELECT COUNT(distinct acctnum), ROUND (AVG(quantity*price),2)
+FROM BIT_DB.FebSales 
+LEFT JOIN BIT_DB.customers 
+ON FebSales.orderid = customers.order_id
+WHERE Quantity>2
+AND length(orderid) = 6
+AND orderid <> 'Order ID';
+
+
+# Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?
+
+SELECT product, SUM(quantity), ROUND (SUM(quantity) * price) as Revenue
+FROM BIT_DB.FebSales
+WHERE location = "548 Lincoln St, Seattle, WA 98101"
+AND length(orderid) = 6
+AND orderid <> 'Order ID'
+GROUP BY product;
+
+# What is the total revenue for each product sold in January?
+
+SELECT product, ROUND (SUM(quantity) * price) as Revenue
+FROM BIT_DB.JanSales
+WHERE length(orderid) = 6
+AND orderid <> 'Order ID'
+GROUP BY product;
+
+# Which product was the cheapest one sold in January, and what was the price?
+
+SELECT product, price
+FROM BIT_DB.JanSales
+WHERE length(orderid) = 6
+AND orderid <> 'Order ID'
+ORDER BY price ASC LIMIT 1;
+
+# Select the customer account numbers for all the orders that were placed in February.
+
+SELECT distinct acctnum
+FROM BIT_DB.customers
+join BIT_DB.FebSales
+on customers.order_id = FebSales.orderID
+WHERE length(orderid) = 6
+AND orderid <> 'Order ID';
+
+# How many of those orders were for an iPhone?
+
+SELECT count(orderID) as orders_amount
+FROM BIT_DB.JanSales
+WHERE product = "iPhone" 
+AND length(orderid) = 6
+AND orderid <> 'Order ID';
+
+# How many orders were placed in January? 
+
+SELECT count(orderID) as orders_amount
+from BIT_DB.JanSales
+WHERE length(orderid) = 6
+AND orderid <> 'Order ID';
