@@ -1,4 +1,4 @@
-# In this project I'm querying a datbase with multiple tables containing data about customers and their orders to answer the following questions:
+# In this project I'm querying a database with multiple tables containing data about customers and their orders to answer the following questions:
 
 # How many customers ordered more than 2 products at a time in February, and what was the average amount spent for those customers?
 
