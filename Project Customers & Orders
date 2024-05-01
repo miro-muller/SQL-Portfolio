@@ -1,5 +1,12 @@
 # In this project I'm querying a database with multiple tables containing data about customers and their orders to answer the following questions:
 
+# List all the products sold in Los Angeles in February, and include how many of each were sold.
+
+SELECT distinct product, sum(quantity), location
+FROM bit_db.FebSales
+WHERE location like '%Los Angeles%'
+GROUP BY product;
+
 # How many customers ordered more than 2 products at a time in February, and what was the average amount spent for those customers?
 
 SELECT COUNT(distinct acctnum), ROUND (AVG(quantity*price),2)
